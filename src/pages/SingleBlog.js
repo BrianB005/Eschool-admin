@@ -19,8 +19,8 @@ const SingleBlog = () => {
     if (!userInfo?.userInfo?.user) {
       navigate("/landing_page");
     }
-  });
-
+    // eslint-disable-next-line
+  }, []);
   return (
     <Wrapper>
       <Navbars>

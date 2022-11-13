@@ -35,13 +35,13 @@ const EditUser = () => {
       setprofilePic(reader.result);
     };
   };
-  const {userInfo} = useSelector((state) => state.signInInfo);
-  useEffect(() => {
-    if (!userInfo?.user) {
-      navigate("/landing_page");
-    }
-  });
-
+  const userInfo = useSelector((state) => state.signInInfo);
+ useEffect(() => {
+   if (!userInfo?.userInfo?.user) {
+     navigate("/landing_page");
+   }
+   // eslint-disable-next-line
+ }, []);
   const { user, loading, error } = useSelector((state) => state.updateUser);
   useEffect(() => {
     if (!isMount) {

@@ -19,9 +19,9 @@ const NavbarOne = () => {
         <Link to={userInfo?.user ? "/logout" : "/login"}>
           <User>
             <div className="icon_wrapper">
-              <div className="icon">
-                <BsPersonCircle />
-              </div>
+              {/* <div className="icon"> */}
+              <BsPersonCircle />
+              {/* </div> */}
             </div>
             <h1>{userInfo?.user ? userInfo?.user.username : "Login"}</h1>
             <div className="carousel">

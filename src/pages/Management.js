@@ -21,13 +21,14 @@ const Management = () => {
     "Date Joined",
     "Action",
   ];
-  const {userInfo} = useSelector((state) => state.signInInfo);
+  const userInfo = useSelector((state) => state.signInInfo);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!userInfo?.user) {
+    if (!userInfo?.userInfo?.user) {
       navigate("/landing_page");
     }
-  });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Wrapper>

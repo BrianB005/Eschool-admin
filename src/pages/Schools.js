@@ -27,10 +27,11 @@ const Schools = () => {
   const userInfo = useSelector((state) => state.signInInfo);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!userInfo?.userInfo?.userInfo) {
+    if (!userInfo?.userInfo?.user) {
       navigate("/landing_page");
     }
-  });
+    // eslint-disable-next-line
+  }, []);
   return (
     <Wrapper>
       <TabsWrapper>
