@@ -94,6 +94,7 @@ export const updateUser = (updates) => async (dispatch, getState) => {
       }
     );
     dispatch({ type: UPDATE_USER_SUCCESS, payload: data });
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
     localStorage.setItem("eSchooladminDetails", JSON.stringify(data));
   } catch (error) {
     dispatch({
