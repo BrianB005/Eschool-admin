@@ -27,7 +27,7 @@ const Schools = () => {
   const userInfo = useSelector((state) => state.signInInfo);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!userInfo) {
+    if (!userInfo?.userInfo?.userInfo) {
       navigate("/landing_page");
     }
   });

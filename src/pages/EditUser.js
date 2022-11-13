@@ -35,9 +35,9 @@ const EditUser = () => {
       setprofilePic(reader.result);
     };
   };
-  const userInfo = useSelector((state) => state.signInInfo);
+  const {userInfo} = useSelector((state) => state.signInInfo);
   useEffect(() => {
-    if (!userInfo) {
+    if (!userInfo?.user) {
       navigate("/landing_page");
     }
   });

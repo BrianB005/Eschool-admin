@@ -13,13 +13,13 @@ const SingleBlog = () => {
   const { blogs } = useSelector((state) => state.blogs);
 
   const blog = blogs?.find((blog) => blog._id === blogId);
-   const userInfo = useSelector((state) => state.signInInfo);
-   const navigate=useNavigate()
-   useEffect(() => {
-     if (!userInfo) {
-       navigate("/landing_page");
-     }
-   });
+  const userInfo = useSelector((state) => state.signInInfo);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!userInfo?.userInfo?.user) {
+      navigate("/landing_page");
+    }
+  });
 
   return (
     <Wrapper>

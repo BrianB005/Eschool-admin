@@ -14,7 +14,7 @@ import School from "../components/School";
 import { useNavigate } from "react-router-dom";
 
 const OverView = () => {
-  const userInfo = useSelector((state) => state.signInInfo);
+  const {userInfo} = useSelector((state) => state.signInInfo);
   const titles = [
     "School Name",
     "School ID",
@@ -25,7 +25,7 @@ const OverView = () => {
 
   const navigate=useNavigate()
   useEffect(()=>{
-    if(!userInfo){
+    if(!userInfo?.user){
       navigate("/landing_page")
     }
   })

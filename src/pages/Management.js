@@ -21,10 +21,10 @@ const Management = () => {
     "Date Joined",
     "Action",
   ];
-  const userInfo = useSelector((state) => state.signInInfo);
+  const {userInfo} = useSelector((state) => state.signInInfo);
   const navigate = useNavigate();
   useEffect(() => {
-    if (!userInfo) {
+    if (!userInfo?.user) {
       navigate("/landing_page");
     }
   });
