@@ -17,7 +17,7 @@ const TextInput = styled.input`
   padding: 12px 22px;
   font-family: "DM Sans";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   width: 400px;
   margin-bottom: 24px;
