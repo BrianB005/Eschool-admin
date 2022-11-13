@@ -9,20 +9,28 @@ import Navbar from "../components/Navbar";
 
 import Tabs from "../components/adminTabs";
 import TableTitle from "../components/TableTitle";
-import { schools } from "../testData/schools";
+
 import School from "../components/School";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getAllSchools } from "../redux/actions/schoolActions";
+import Loader from "../components/Loader";
 
 const Schools = () => {
   // const userInfo = useSelector((state) => state.signInInfo);
   const titles = [
     "School Name",
-    "School ID",
     "Email Address",
+    "School ID",
     "Date Joined",
     "Action",
   ];
+  const dispatch=useDispatch()
+    useEffect(() => {
+      dispatch(getAllSchools());
+      // eslint-disable-next-line
+    }, []);
+    const { schools, loading } = useSelector((state) => state.schools);
 
   const userInfo = useSelector((state) => state.signInInfo);
   const navigate = useNavigate();
@@ -50,11 +58,15 @@ const Schools = () => {
           ))}
         </Titles>
         <SchoolsWrapper>
-          <SchoolsList>
-            {schools.map((school) => (
-              <School key={school.id} {...school} />
-            ))}
-          </SchoolsList>
+          {loading ? (
+            <Loader />
+          ) : (
+            <SchoolsList>
+              {schools?.map((school) => (
+                <School key={school.id} {...school} />
+              ))}
+            </SchoolsList>
+          )}
         </SchoolsWrapper>
       </OverViewWrapper>
     </Wrapper>

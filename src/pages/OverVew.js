@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 // import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -9,21 +9,29 @@ import Navbar from "../components/Navbar";
 
 import Tabs from "../components/adminTabs";
 import TableTitle from "../components/TableTitle";
-import { schools } from "../testData/schools";
+
 import School from "../components/School";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAllSchools } from "../redux/actions/schoolActions";
+import Loader from "../components/Loader";
 
 const OverView = () => {
   const userInfo = useSelector((state) => state.signInInfo);
   const titles = [
     "School Name",
-    "School ID",
     "Email Address",
+    "School ID",
     "Date Joined",
     "Action",
   ];
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllSchools());
+    // eslint-disable-next-line
+  }, []);
+  const { schools, loading } = useSelector((state) => state.schools);
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     if (!userInfo?.userInfo?.user) {
       navigate("/landing_page");
@@ -43,7 +51,9 @@ const OverView = () => {
         </Greeting>
         <HorizontalWrapper>
           <Subtitle>Here's an overview of EDET</Subtitle>
-          <GreenButton title="View comprehensive list" />
+          <Link to="/schools">
+            <GreenButton title="View comprehensive list" />
+          </Link>
         </HorizontalWrapper>
 
         <Cards>
@@ -69,11 +79,15 @@ const OverView = () => {
           ))}
         </Titles>
         <SchoolsWrapper>
-          <SchoolsList>
-            {schools.map((school) => (
-              <School key={school.id} {...school} />
-            ))}
-          </SchoolsList>
+          {loading ? (
+            <Loader />
+          ) : (
+            <SchoolsList>
+              {schools?.map((school) => (
+                <School key={school.id} {...school} />
+              ))}
+            </SchoolsList>
+          )}
         </SchoolsWrapper>
       </OverViewWrapper>
     </Wrapper>
@@ -215,9 +229,9 @@ const SchoolsWrapper = styled.div`
   height: 100vh;
   overflow-y: scroll;
   display: flex;
-  margin-left: 32px;
+  /* margin-left: 32px; */
 
-  padding-right: 88px;
+  /* padding-right: 88px; */
   padding-top: 30px;
   flex-direction: column;
   &::-webkit-scrollbar {

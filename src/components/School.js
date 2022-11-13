@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-const School = ({ name, email, createdAt, id }) => {
+const School = ({ school_name, email, createdAt, _id, logo }) => {
   return (
     <Wrapper>
       <Name>
-        <ProfilePic>{name.substring(0, 1)}</ProfilePic>
-        <h1>{name}</h1>
+        <ProfilePic src={logo?.url} />
+        <h1>{school_name}</h1>
       </Name>
       <Email>{email}</Email>
-      <SchoolId> {id}</SchoolId>
+      <SchoolId> {_id}</SchoolId>
       <DateJoined>{new Date(createdAt).toDateString()}</DateJoined>
       <ViewInfo>View Info</ViewInfo>
     </Wrapper>
@@ -18,8 +18,10 @@ const School = ({ name, email, createdAt, id }) => {
 const Wrapper = styled.div`
   width: 100%;
   display: grid;
+  padding: 10px;
   grid-template-columns: repeat(5, 1fr);
-  height: 74px;
+  /* height: 74px; */
+  height: max-content;
   background: #f9f9f9;
   margin-bottom: 6px;
   justify-content: space-between;
@@ -33,21 +35,21 @@ const Wrapper = styled.div`
   border-radius: 10px;
   align-items: center;
 `;
-const ProfilePic = styled.div`
+const ProfilePic = styled.img`
   width: 50px;
   height: 50px;
   background: #f59e0b;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  object-fit: cover;
   margin-right: 20px;
+  flex: 0 0 auto;
 `;
 const Name = styled.div`
   display: flex;
   align-items: center;
   justify-self: flex-start;
   margin-left: 20px;
+
   h1 {
     height: 36px;
 
@@ -56,6 +58,7 @@ const Name = styled.div`
     font-weight: 500;
     font-size: 16px;
     line-height: 36px;
+    overflow: hidden;
 
     color: rgba(20, 20, 20, 0.8);
   }
