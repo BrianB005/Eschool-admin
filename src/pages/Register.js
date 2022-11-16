@@ -30,7 +30,7 @@ const Register = () => {
       }
     }
     // eslint-disable-next-line
-  }, [error]);
+  }, [dispatch, error]);
   useEffect(() => {
     if (!isMount) {
       if (userInfo) {

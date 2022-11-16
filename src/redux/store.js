@@ -2,7 +2,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
 import { createBlogReducer, getMyBlogsReducer } from "./reducers/blogReducers";
-import { getAllSchoolsReducer } from "./reducers/schoolReducers";
+import { getAllSchoolsReducer, updateSchoolReducer } from "./reducers/schoolReducers";
 
 // import { getAllSchoolsReducer } from "./reducers/schoolReducers";
 import {
@@ -18,6 +18,7 @@ const reducers = combineReducers({
   blog: createBlogReducer,
   updateUser: updateUserReducer,
   schools: getAllSchoolsReducer,
+  updateSchool: updateSchoolReducer,
 });
 const initialState = {
   signInInfo: {

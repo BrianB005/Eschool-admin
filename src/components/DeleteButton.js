@@ -11,7 +11,8 @@ const Button = styled.div`
   font-weight: 500;
   font-size: 16px;
   line-height: 32px;
-
+  display: flex;
+  flex: 0 0 auto;
   margin-left: 41px;
   font-family: "Dm Sans";
   background: rgba(255, 0, 0, 0.8);
